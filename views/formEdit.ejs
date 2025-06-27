@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+
+    <a href="/">Go Back Home</a>
+
+    <% if (errors && errors.length) { %>
+        <ul class="error-list">
+        <% errors.forEach(err => { %>
+            <li><%= err.msg %></li>
+        <% }) %>
+        </ul>
+    <% } %>
+
+    <form action="/edit/<%= id %>" method="POST">
+      <label for="item">Item:</label>
+      <input id="item" name="item" type="text" value="<%= item || '' %>" required />
+
+      <label for="category">Category:</label>
+      <select name="category" id="category" required>
+        <option value="Electronics" <%= category === "Electronics" ? "selected" : "" %>>Electronics</option>
+        <option value="Gaming" <%= category === "Gaming" ? "selected" : "" %>>Gaming</option>
+        <option value="Office" <%= category === "Office" ? "selected" : "" %>>Office</option>
+        <option value="Accessories" <%= category === "Accessories" ? "selected" : "" %>>Accessories</option>
+      </select>
+
+      <label for="price">Price:</label>
+      <input id="price" name="price" type="number" min="0" step="1" value="<%= (price != null ? price : 0) %>" required />
+
+      <label for="quantity">Quantity:</label>
+      <input
+        id="quantity"
+        name="quantity"
+        type="number"
+        min="0"
+        step="1"
+        value="<%= (quantity != null ? quantity : 0) %>" 
+        required
+      />
+
+      <button type="submit">Done</button>
+    </form>
+  </body>
+</html>

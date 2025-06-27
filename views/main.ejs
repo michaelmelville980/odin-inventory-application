@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Inventory</h1>
+    <a href="/create">Add Entry</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(item => { %>
+        <tr>
+          <td><%= item.item %></td>
+          <td><%= item.category %></td>
+          <td><%= item.price %></td>
+          <td><%= item.quantity %></td>
+          <td>
+            <a href="/edit/<%= item.id %>">Edit</a>
+          </td>
+          <td>
+            <form action="/delete/<%= item.id %>" method="POST">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
